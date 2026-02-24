@@ -35,7 +35,7 @@ Continuing my 30 Days JavaScript Challenge, I built a simple and clean Notes App
 
 🌐 Live
 
-👉 
+https://saurabh54e.github.io/Js-Day06-Notes-App/
 
 ## Author
 
