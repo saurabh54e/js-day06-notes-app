@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #cf9aff, #95c0ff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.container h1 {
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.container h1 img {
+  width: 60px;
+}
+
+.container button {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #9418fd, #571094);
+  color: #000;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
+  margin: 30px 0 20px;
+}
+
+.container button img {
+  width: 25px;
+  margin-right: 10px;
+}
+
+.note {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  margin: 20px 0;
+}
+
+.input-box {
+  position: relative;
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  min-width: 200px;
+  /* white-space: pre-wrap;
+  word-break: break-word; */
+  padding-right: 70px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.note .delete {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  bottom: 5px;
+  right: 5px;
+}
+.input-box:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #9418fd;
+}
+.container button:hover {
+  transform: scale(1.05);
+}
