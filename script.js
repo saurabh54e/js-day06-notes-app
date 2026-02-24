@@ -20,4 +20,8 @@ createBtn.addEventListener("click", function () {
 
   inputbox.focus();
 });
-deletebtn.adde
+const deletebtn = document.querySelector(".delete");
+deletebtn.addEventListener("click", function (e) {
+inputbox.remove();
+})
+
