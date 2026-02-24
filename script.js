@@ -1,25 +1,57 @@
+
+
+
 const notesContainer = document.querySelector(".notes-container");
 const createBtn = document.querySelector(".btn");
 
 
+const themeToggle = document.createElement("button");
+themeToggle.className = "theme-toggle";
+document.body.appendChild(themeToggle);
 
+
+function updateThemeIcon(){
+  themeToggle.innerText =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
+}
+
+
+
+if(localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+}
+updateThemeIcon();
+themeToggle.addEventListener("click",()=>{
+
+  document.body.classList.toggle("dark");
+
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+
+  updateThemeIcon();
+});
 
 // save Notes to local storage
 function saveNotes() {
   localStorage.setItem("notes", notesContainer.innerHTML);
 }
 
-
-
+// Delete empty notes on focus out
 notesContainer.addEventListener("focusout", function (e) {
-  if (!e.target.classList.contains("input-box")) return;
+  if (
+    !e.target.classList.contains("input-box") &&
+    !e.target.classList.contains("note-title")
+  )
+    return;
 
-  const note = e.target.parentElement;
+  const note = e.target.closest(".note");
 
-  // if note already removed (delete click)
-  if (!note.isConnected) return;
+  const title = note.querySelector(".note-title");
+  const body = note.querySelector(".input-box");
 
-  if (e.target.innerText.trim() === "") {
+  if (title.innerText.trim() === "" && body.innerText.trim() === "") {
     note.remove();
     saveNotes();
   }
@@ -31,18 +63,26 @@ function loadNotes() {
 }
 loadNotes();
 
-
-
-
-const last = notesContainer.querySelector(".input-box:last-child");
-if (last) last.focus();
-
-
+const last = notesContainer.querySelector(".note:last-child .note-title");
+if(last) last.focus();
 
 // Create new note
 createBtn.addEventListener("click", function () {
   const note = document.createElement("div");
   note.className = "note";
+
+  const title = document.createElement("div");
+  title.className = "note-title";
+  title.contentEditable = "true";
+
+  const date = document.createElement("div");
+  date.className = "note-date";
+
+  const now = new Date();
+  date.innerText = now.toLocaleString([], {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   const inputbox = document.createElement("div");
   inputbox.className = "input-box";
@@ -52,21 +92,35 @@ createBtn.addEventListener("click", function () {
   img.src = "images/delete.png";
   img.className = "delete";
 
+  note.appendChild(title);
+  note.appendChild(date);
   note.appendChild(inputbox);
   note.appendChild(img);
   notesContainer.appendChild(note);
 
-  inputbox.focus();
+  title.focus();
   saveNotes();
 });
-
 
 
 // Delete
 notesContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete")) {
-    e.target.parentElement.remove();
-    saveNotes();
+
+    const note = e.target.parentElement;
+
+    note.classList.add("removing"); // start animation
+
+    setTimeout(() => {
+      note.remove();
+      saveNotes();
+    }, 200); 
+  }
+});
+notesContainer.addEventListener("keydown", function (e) {
+  if (e.target.classList.contains("note-title") && e.key === "Enter") {
+    e.preventDefault();
+    e.target.closest(".note").querySelector(".input-box").focus();
   }
 });
 
@@ -77,6 +131,7 @@ notesContainer.addEventListener("click", function (e) {
 //     }
 // })
 
-
 //  Auto save while typing
 notesContainer.addEventListener("input", saveNotes);
+
+
