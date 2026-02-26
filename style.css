@@ -7,25 +7,25 @@
 
 /* Theme Colors */
 :root{
-  --bg1:#0f172a;
-  --bg2:#020617;
-  --card:#111827;
-  --text:#e0f2fe;
-  --muted:#67e8f9;
-  --accent:#22d3ee;
-  --btn1:#06b6d4;
-  --btn2:#0891b2;
+  --bg1:#fff5f7;
+  --bg2:#ffe4e6;
+  --card:#ffffff;
+  --text:#3b1f25;
+  --muted:#a87b84;
+  --accent:#f43f5e;
+  --btn1:#fb7185;
+  --btn2:#e11d48;
 }
 
 body.dark{
-  --bg1:#020617;
-  --bg2:#000000;
-  --card:#020617;
-  --text:#a5f3fc;
-  --muted:#22d3ee;
-  --accent:#67e8f9;
-  --btn1:#22d3ee;
-  --btn2:#0891b2;
+  --bg1:#190a0d;
+  --bg2:#260f14;
+  --card:#31161b;
+  --text:#ffe4e6;
+  --muted:#c9a2a9;
+  --accent:#ff8fa3;
+  --btn1:#fb7185;
+  --btn2:#f43f5e;
 }
 
 
